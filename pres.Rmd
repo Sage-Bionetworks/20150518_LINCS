@@ -53,14 +53,24 @@ Image(s) that illustrate connection b/t data and analyses
 
 ## Describing the file (or analysis) | Programmatic Wiki markup
 
-Example using wiki using Rmd or IPyNB
+Example using wiki using Rmd or IPyNB?
+
+Take from somewhere else
 
 ## Automation | Uploading, Updating, Etc.
 
 - programmatic clients (R, python, command line)
 
-## Overview of available data
+What we can automate (everything!):
+
+- when files are added to exacloud and need to be added to Synapse
+- previews of files
+- annotation of files (where will this come from?)
+
+## Example | Providing an overview of available data
 
 Table displaying annotations on the files, link to a preview and how to download the file from Exacloud
 
 ## Synapse | Notes about security and Access Restrictions
+
+Do we need this here?
