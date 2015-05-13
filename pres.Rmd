@@ -1,0 +1,66 @@
+---
+title: "Synapse @ MEP-LINCS"
+subtitle: "Something something something, dark side..."
+author: "Kenneth Daily, Sage Bionetworks"
+date: "OHSU - 05/13/2015"
+output: 
+  ioslides_presentation:
+    widescreen: true
+    smaller: true
+---
+
+## Concerns of large projects | Requires distributed storage: some things are local and others remote
+
+<div class="centered">
+<img src='./Diagram1.png' width='90%'>
+</div>
+
+## Synapse | A collection of living research projects
+
+Enabling researchers to contribute to large-scale collaborative science across institutions
+
+## Synapse
+
+<div class="centered">
+<img src='./run_anywhere_synapse.png' width='90%'>
+</div>
+
+## Synapse | Enabling large-scale collaborative science
+
+* distributed & versioned file system
+* rich annotations (metadata) 
+* agnostic to storage solution (cloud, local server, etc.)
+* Strongly typed customizable schemas for structured data 
+* data accessed via any number of ‘clients’ 
+    - [www.synapse.org](https://www.synapse.org/)
+    - programmatic clients (R, python, command line)
+* wiki authoring 
+
+access controls (share whatever with whomever)
+
+## Finding files | Annotations & Querying
+
+Show ex query using existing breast cancer proj [syn2346643](https://www.synapse.org/#!Synapse:syn2346643/)
+
+
+## Where the file is | Amazon S3 or ExaCloud
+
+Show how Synapse file will link back to original - how to download
+
+## Where a file comes from | Provenance
+
+Image(s) that illustrate connection b/t data and analyses
+
+## Describing the file (or analysis) | Programmatic Wiki markup
+
+Example using wiki using Rmd or IPyNB
+
+## Automation | Uploading, Updating, Etc.
+
+- programmatic clients (R, python, command line)
+
+## Overview of available data
+
+Table displaying annotations on the files, link to a preview and how to download the file from Exacloud
+
+## Synapse | Notes about security and Access Restrictions
