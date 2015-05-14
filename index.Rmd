@@ -7,6 +7,7 @@ output:
   ioslides_presentation:
     widescreen: true
     smaller: true
+    logo: synapse_circle.png
 ---
 
 ## Concerns of large projects | Requires distributed storage: some things are local and others remote
@@ -22,21 +23,25 @@ Enabling researchers to contribute to large-scale collaborative science across i
 ## Synapse
 
 <div class="centered">
-<img src='./run_anywhere_synapse.png' width='90%'>
+<img src='./runanywhere.png' width='90%'>
 </div>
 
 ## Synapse | Enabling large-scale collaborative science
 
-* distributed & versioned file system
-* rich annotations (metadata) 
-* agnostic to storage solution (cloud, local server, etc.)
-* Strongly typed customizable schemas for structured data 
-* data accessed via any number of ‘clients’ 
-    - [www.synapse.org](https://www.synapse.org/)
-    - programmatic clients (R, python, command line)
-* wiki authoring 
+It is:
 
-access controls (share whatever with whomever)
+* Distributed & versioned file system
+* Agnostic to storage solution (cloud, local server, etc.)
+
+It has:
+
+* User-defined annotations (metadata) 
+* Customizable table schemas for structured data
+* Access via multiple ‘clients’
+    - Web client: [www.synapse.org](https://www.synapse.org/)
+    - Programmatic clients (R, Python, command line)
+* Wiki authoring for documentation and description
+* Fine-grained access controls (share whatever with whomever)
 
 ## Finding files | Annotations & Querying
 
