@@ -2,12 +2,12 @@
 title: "Synapse @ MEP-LINCS"
 subtitle: "Something something something, dark side..."
 author: "Kenneth Daily, Sage Bionetworks"
-date: "OHSU - 05/13/2015"
+date: "OHSU - `r date()`"
 output: 
   ioslides_presentation:
     widescreen: true
     smaller: true
-    logo: synapse_circle.png
+    logo: sage_logo.png
 ---
 
 ## Concerns of large projects | Requires distributed storage: some things are local and others remote
@@ -28,14 +28,15 @@ Enabling researchers to contribute to large-scale collaborative science across i
 
 ## Synapse | Enabling large-scale collaborative science
 
-It is:
+It is a distributed filesystem:
 
-* Distributed & versioned file system
 * Agnostic to storage solution (cloud, local server, etc.)
 
-It has:
+## Synapse | Enabling large-scale collaborative science
 
-* User-defined annotations (metadata) 
+It has many features:
+
+* User-defined annotations
 * Customizable table schemas for structured data
 * Access via multiple ‘clients’
     - Web client: [www.synapse.org](https://www.synapse.org/)
@@ -46,7 +47,6 @@ It has:
 ## Finding files | Annotations & Querying
 
 Show ex query using existing breast cancer proj [syn2346643](https://www.synapse.org/#!Synapse:syn2346643/)
-
 
 ## Where the file is | Amazon S3 or ExaCloud
 
