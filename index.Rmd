@@ -85,7 +85,7 @@ kable(res)
 
 [JWGray Breast Cancer Cell Line Panel (syn2346643)](https://www.synapse.org/#!Synapse:syn2346643/)
 
-## Where the file is | Amazon S3 or ExaCloud
+## Where the file is stored | Amazon S3, ExaCloud, Github, FTP, your laptop
 
 <div class="centered">
 <img src='./img/filelocsynapse.png' width='90%'>
@@ -123,10 +123,6 @@ FROM syn3156503 WHERE public=true
 <img src='./img/wiki2.png' width='80%'>
 </div>
 
-## Synapse | Access controls
-
-* Fine-grained access controls (share whatever with whomever)
-
 ## Where a file comes from (provenance)
 
 <div class="centered">
@@ -139,20 +135,22 @@ Example using wiki using Rmd or IPyNB?
 
 Take from somewhere else
 
+## Synapse | Access controls
+
+* Fine-grained access controls (share whatever with whomever)
+
+## Synapse | Notes about Security and Access Restrictions
+
+Do we need this here?
+
 ## Automation | Uploading, Updating, Etc.
 
-- programmatic clients (R, python, command line)
-
-What we can automate (everything!):
-
-- when files are added to exacloud and need to be added to Synapse
-- previews of files
+- when files are added to Exacloud and need to be added to Synapse
 - annotation of files (where will this come from?)
+- previews of available files and how to get them
 
 ## Example | Providing an overview of available data
 
 Table displaying annotations on the files, link to a preview and how to download the file from Exacloud
 
-## Synapse | Notes about security and Access Restrictions
-
-Do we need this here?
+## Thank you! | Sage Bionetworks
