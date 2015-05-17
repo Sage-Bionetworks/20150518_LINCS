@@ -6,7 +6,7 @@ date: "OHSU - `r date()`"
 output: 
   ioslides_presentation:
     widescreen: true
-    logo: sage_logo.png
+    logo: ./img/sage_logo.png
 ---
 
 ```{r loadlibs, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
@@ -29,7 +29,7 @@ knitr::opts_chunk$set(
 ## Concerns of large projects | Requires distributed storage: some things are local and others remote
 
 <div class="centered">
-<img src='./Diagram1.png' width='90%'>
+<img src='./img/Diagram1.png' width='90%'>
 </div>
 
 ## Synapse | A collection of living research projects
@@ -39,7 +39,7 @@ Enabling researchers to contribute to large-scale collaborative science across i
 ## Synapse
 
 <div class="centered">
-<img src='./runanywhere.png' width='90%'>
+<img src='./img/runanywhere.png' width='90%'>
 </div>
 
 ## Synapse | Enabling large-scale collaborative science
@@ -56,13 +56,19 @@ It is versioned:
 ## Multiple ways to access Synapse
 
 <div class="centered">
-<img src='./synapseinteraction.png' width='60%'>
+<img src='./img/synapseinteraction.png' width='60%'>
+</div>
+
+## Synapse | File storage
+
+<div class="centered">
+<img src='./img/filessynapse.png' width='90%'>
 </div>
 
 ## Synapse | User-defined annotations
 
 <div class="centered">
-<img src='./annotations.png' width='95%'>
+<img src='./img/annotations.png' width='95%'>
 </div>
 
 ## Finding files | Annotations & Querying {.smaller}
@@ -82,13 +88,13 @@ kable(res)
 ## Where the file is | Amazon S3 or ExaCloud
 
 <div class="centered">
-<img src='./filelocsynapse.png' width='90%'>
+<img src='./img/filelocsynapse.png' width='90%'>
 </div>
 
 ## Synapse | Structured data tables
 
 <div class="centered">
-<img src='./tableschema.png' width='90%'>
+<img src='./img/tableschema.png' width='90%'>
 </div>
 
 ## Synapse | Structured data tables { .smaller }
@@ -102,13 +108,20 @@ FROM syn3156503 WHERE public=true
 ```
 
 <div class="centered">
-<img src='./tablequeryshort.png' width='90%'>
+<img src='./img/tablequeryshort.png' width='90%'>
 </div>
-
 
 ## Synapse | Documentation and description
 
-* Wiki authoring for documentation and description
+<div class="centered">
+<img src='./img/wikiex.png' width='80%'>
+</div>
+
+## Synapse | Documentation and description
+
+<div class="centered">
+<img src='./img/wiki2.png' width='80%'>
+</div>
 
 ## Synapse | Access controls
 
@@ -117,7 +130,7 @@ FROM syn3156503 WHERE public=true
 ## Where a file comes from (provenance)
 
 <div class="centered">
-<img src='./provenance.png' height='80%'>
+<img src='./img/provenance.png' height='80%'>
 </div>
 
 ## Describing the file (or analysis) | Programmatic Wiki markup
