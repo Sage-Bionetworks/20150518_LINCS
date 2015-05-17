@@ -9,12 +9,12 @@ output:
     logo: ./img/sage_logo.png
 ---
 
-```{r loadlibs, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
-library(synapseClient)
+```{r loadlibs, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, eval=TRUE}
 library(knitr)
 library(dplyr)
 
-synapseLogin()
+# library(synapseClient)
+# synapseLogin()
 
 # control what is output when knitting
 # These can be overridden in specific chunks
@@ -26,58 +26,91 @@ knitr::opts_chunk$set(
   tidy = FALSE)
 ```
 
-## Concerns of large projects | Requires distributed storage: some things are local and others remote
+## Issues in large data-intensive projects | People working in parallel across the globe { .smaller }
 
 <div class="centered">
 <img src='./img/Diagram1.png' width='90%'>
 </div>
 
-## Synapse | A collection of living research projects
-
-Enabling researchers to contribute to large-scale collaborative science across institutions
-
-## Synapse
-
-<div class="centered">
-<img src='./img/runanywhere.png' width='90%'>
+<div class="notes">
+Requires distributed storage: some things are local and others remote
 </div>
 
-## Synapse | Enabling large-scale collaborative science
+---
 
-It is distributed:
+<img src='./img/synapse.png' width='50%'>
 
-* Agnostic to storage solution (cloud, local server, remote server)
-* **New!** - your own Amazon S3 buckets
+<br/>
 
-It is versioned:
+* A workspace that allows you to **aggregate**, **describe**, and **share** research
+* A tool to improve **reproducibility** of data intensive science, recording progress as you work
+* A set of living research projects enabling contribution to large-scale collaborative solutions
 
-* Keep track of changes and always get most recent
+<div class="notes">
+Enabling researchers to contribute to large-scale collaborative science across institutions
+</div>
 
-## Multiple ways to access Synapse
+---
+
+<div class="centered">
+<img src='./img/runanywhere.png' width='95%'>
+</div>
+
+## Multiple ways to access | Synapse API
 
 <div class="centered">
 <img src='./img/synapseinteraction.png' width='60%'>
 </div>
 
-## Synapse | File storage
+## Distributed, versioned file storage
 
 <div class="centered">
 <img src='./img/filessynapse.png' width='90%'>
 </div>
 
-## Synapse | User-defined annotations
+<div class="notes">
+* Agnostic to storage solution (cloud, local server, remote server)
+* **New!** - your own Amazon S3 buckets
+</div>
+
+## Getting data onto Synapse
+
+```
+synapse store --parentId 
+```
+
+## Where the file is stored | Amazon S3, ExaCloud, Github, FTP, your laptop
+
+<div class="centered">
+<img src='./img/filelocsynapse.png' width='90%'>
+<img src='./img/externalstorage.png' width='90%'>
+</div>
+
+<div class="notes">
+Can work anyplace, store data just about anywhere!
+Obv we aren't opening up access to your personal laptop, but for personal things it can work fine
+</div>
+
+## User-defined annotations
 
 <div class="centered">
 <img src='./img/annotations.png' width='95%'>
 </div>
 
-## Finding files | Annotations & Querying {.smaller}
-```{r echo=TRUE, cache=TRUE}
+<br/>
+
+* **Pro**: Completely user-driven
+* **Con**: Completely user-driven
+* Easily curate and search for specific files
+
+## Annotations & querying {.smaller}
+
+```{r echo=TRUE, cache=TRUE, eval=FALSE}
 q <- "select * from file where projectId=='syn2346643' and dataSubType=='cna'"
 res <- synapseQuery(q)
 ```
 
-```{r}
+```{r printtbl, eval=FALSE}
 colnames(res) <- gsub(".*\\.", "", colnames(res))
 res <- res[, c("name", "id", "dataType", "platform", "disease")]
 kable(res)
@@ -85,22 +118,18 @@ kable(res)
 
 [JWGray Breast Cancer Cell Line Panel (syn2346643)](https://www.synapse.org/#!Synapse:syn2346643/)
 
-## Where the file is stored | Amazon S3, ExaCloud, Github, FTP, your laptop
-
-<div class="centered">
-<img src='./img/filelocsynapse.png' width='90%'>
-</div>
-
 ## Synapse | Structured data tables
 
 <div class="centered">
 <img src='./img/tableschema.png' width='90%'>
 </div>
 
-## Synapse | Structured data tables { .smaller }
+<div class="notes">
+We may want to have data that is queryable, but also enforce what data is entered - certain strings, a column of integers, etc
+A relatively new feature in Synapse
+</div>
 
-* Editable in the browser or programmatically
-* Rows are versioned
+## Synapse | Structured data tables { .smaller }
 
 ```
 SELECT UID,biologicalSampleName,Diffname_short,pass_qc,Cell_Type,Cell_Line_Type,Tissue_of_Origin 
@@ -111,10 +140,29 @@ FROM syn3156503 WHERE public=true
 <img src='./img/tablequeryshort.png' width='90%'>
 </div>
 
+## Synapse | Structured data tables
+
+* Rows are versioned
+* Create/Update/Delete
+* Editable in the browser or programmatically
+* Use cases:
+    - Tabular data files
+    - Storing controlled vocabulary metadata
+    - Curated file listings
+
+<div class="notes">
+Under the hood, we are always displaying the most recent version of each row
+But it's possible to get any previous versions if necessary
+</div>
+
 ## Synapse | Documentation and description
 
 <div class="centered">
 <img src='./img/wikiex.png' width='80%'>
+</div>
+
+<div class="notes">
+Since the Synapse web site is probably most often used, we have flexible options for describing the data in a Project
 </div>
 
 ## Synapse | Documentation and description
@@ -123,34 +171,61 @@ FROM syn3156503 WHERE public=true
 <img src='./img/wiki2.png' width='80%'>
 </div>
 
+## Synapse | Advanced descriptions { .smaller }
+
+[syn2247883](https://www.synapse.org/#!Synapse:syn2247883/)
+
+## Synapse | Programmatic descriptions { .smaller }
+
 ## Where a file comes from (provenance)
 
 <div class="centered">
 <img src='./img/provenance.png' height='80%'>
 </div>
 
-## Describing the file (or analysis) | Programmatic Wiki markup
+## Synapse | Security and Access Restrictions
 
-Example using wiki using Rmd or IPyNB?
+* Users and groups
+* Fine-grained access controls at multiple levels
+    - File
+    - Folder
+    - Project
 
-Take from somewhere else
+## Synapse | Security and Access Restrictions
 
-## Synapse | Access controls
+<div class="centered">
+<img src='./img/cmccontrolleduse.png' width='80%'>
+</div>
 
-* Fine-grained access controls (share whatever with whomever)
-
-## Synapse | Notes about Security and Access Restrictions
-
-Do we need this here?
+<div class="notes">
+Sensitive data requires more control
+</div>
 
 ## Automation | Uploading, Updating, Etc.
 
-- when files are added to Exacloud and need to be added to Synapse
-- annotation of files (where will this come from?)
-- previews of available files and how to get them
+- New files in ExaCloud $\rightarrow$ Synapse
+- Annotation of files
+- Provenance
+- Previews of available files
 
-## Example | Providing an overview of available data
+<div class="notes">
+Since Synapse is an API, this is easy - generally we provide customized solutions at different levels of automation
+The important thing is to agree on a standard
+</div>
 
-Table displaying annotations on the files, link to a preview and how to download the file from Exacloud
+## MEP-LINCS Project | Before
+
+## MEP-LINCS Project | After
+
+## Example projects | To draw inspiration
+
+- [AMP AD Knowledge Portal](https://www.synapse.org/#!Synapse:syn2580853)
+- [Progenitor Cell Biology Consortium](https://www.synapse.org/#!Synapse:syn1773109)
+- [JWGray Breast Cancer Cell Line Panel](https://www.synapse.org/#!Synapse:syn2346643)
+- [NCI Up For A Challenge](https://www.synapse.org/#!Synapse:syn3157598)
+
+## Extensive documentation and examples
+
+- [github:Sage-Bionetworks/synapseTutorials](https://github.com/Sage-Bionetworks/synapseTutorials)
 
 ## Thank you! | Sage Bionetworks
