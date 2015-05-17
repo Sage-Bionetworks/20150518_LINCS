@@ -6,9 +6,25 @@ date: "OHSU - `r date()`"
 output: 
   ioslides_presentation:
     widescreen: true
-    smaller: true
     logo: sage_logo.png
 ---
+
+```{r loadlibs, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
+library(synapseClient)
+library(knitr)
+library(dplyr)
+
+synapseLogin()
+
+# control what is output when knitting
+# These can be overridden in specific chunks
+knitr::opts_chunk$set(
+  echo=FALSE,
+  warning=FALSE,
+  message=FALSE,
+  error = FALSE,
+  tidy = FALSE)
+```
 
 ## Concerns of large projects | Requires distributed storage: some things are local and others remote
 
@@ -28,33 +44,81 @@ Enabling researchers to contribute to large-scale collaborative science across i
 
 ## Synapse | Enabling large-scale collaborative science
 
-It is a distributed filesystem:
+It is distributed:
 
-* Agnostic to storage solution (cloud, local server, etc.)
+* Agnostic to storage solution (cloud, local server, remote server)
+* **New!** - your own Amazon S3 buckets
 
-## Synapse | Enabling large-scale collaborative science
+It is versioned:
 
-It has many features:
+* Keep track of changes and always get most recent
 
-* User-defined annotations
-* Customizable table schemas for structured data
-* Access via multiple ‘clients’
-    - Web client: [www.synapse.org](https://www.synapse.org/)
-    - Programmatic clients (R, Python, command line)
-* Wiki authoring for documentation and description
-* Fine-grained access controls (share whatever with whomever)
+## Multiple ways to access Synapse
 
-## Finding files | Annotations & Querying
+<div class="centered">
+<img src='./synapseinteraction.png' width='60%'>
+</div>
 
-Show ex query using existing breast cancer proj [syn2346643](https://www.synapse.org/#!Synapse:syn2346643/)
+## Synapse | User-defined annotations
+
+<div class="centered">
+<img src='./annotations.png' width='95%'>
+</div>
+
+## Finding files | Annotations & Querying {.smaller}
+```{r echo=TRUE, cache=TRUE}
+q <- "select * from file where projectId=='syn2346643' and dataSubType=='cna'"
+res <- synapseQuery(q)
+```
+
+```{r}
+colnames(res) <- gsub(".*\\.", "", colnames(res))
+res <- res[, c("name", "id", "dataType", "platform", "disease")]
+kable(res)
+```
+
+[JWGray Breast Cancer Cell Line Panel (syn2346643)](https://www.synapse.org/#!Synapse:syn2346643/)
 
 ## Where the file is | Amazon S3 or ExaCloud
 
-Show how Synapse file will link back to original - how to download
+<div class="centered">
+<img src='./filelocsynapse.png' width='90%'>
+</div>
 
-## Where a file comes from | Provenance
+## Synapse | Structured data tables
 
-Image(s) that illustrate connection b/t data and analyses
+<div class="centered">
+<img src='./tableschema.png' width='90%'>
+</div>
+
+## Synapse | Structured data tables { .smaller }
+
+* Editable in the browser or programmatically
+* Rows are versioned
+
+```
+SELECT UID,biologicalSampleName,Diffname_short,pass_qc,Cell_Type,Cell_Line_Type,Tissue_of_Origin 
+FROM syn3156503 WHERE public=true
+```
+
+<div class="centered">
+<img src='./tablequeryshort.png' width='90%'>
+</div>
+
+
+## Synapse | Documentation and description
+
+* Wiki authoring for documentation and description
+
+## Synapse | Access controls
+
+* Fine-grained access controls (share whatever with whomever)
+
+## Where a file comes from (provenance)
+
+<div class="centered">
+<img src='./provenance.png' height='80%'>
+</div>
 
 ## Describing the file (or analysis) | Programmatic Wiki markup
 
