@@ -73,11 +73,41 @@ Enabling researchers to contribute to large-scale collaborative science across i
 * **New!** - your own Amazon S3 buckets
 </div>
 
-## Getting data onto Synapse
+## Getting data onto Synapse { .smaller }
+
+Use the web interface:
+
+<div class="centered">
+<img src='./img/uploadfile.png' width='60%'>
+</div>
+
+<br/>
+
+or a simple command:
 
 ```
-synapse store --parentId 
+synapse store 
+  --parentId syn3348585 \ # The Analysis folder in MEP-LINCS
+  --annotations "{'analysisType': 'stats'}" \ # Some user-defined annotations
+  myNewAnalysis.Rmd # The file to upload
 ```
+
+## Getting data from Synapse
+
+Use the web interface:
+
+<div class="centered">
+<img src='./img/filelocsynapse.png' width='80%'>
+</div>
+
+<br/>
+
+or a simple command:
+
+```
+synapse get --id syn3247001
+```
+
 
 ## Where the file is stored | Amazon S3, ExaCloud, Github, FTP, your laptop
 
