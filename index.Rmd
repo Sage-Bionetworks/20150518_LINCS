@@ -1,8 +1,8 @@
 ---
-title: "Synapse @ MEP-LINCS"
-subtitle: "Something something something, dark side..."
+title: "Synapse"
+subtitle: "MEP-LINCS, OHSU"
 author: "Kenneth Daily, Sage Bionetworks"
-date: "OHSU - `r date()`"
+date: "`r date()`"
 output: 
   ioslides_presentation:
     widescreen: true
