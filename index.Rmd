@@ -228,7 +228,7 @@ Since the Synapse web site is probably most often used, we have flexible options
 ## Where a file comes from (provenance)
 
 <div class="centered">
-<img src='./img/provenance.png' height='80%'>
+<img src='./img/provenance.png' width='60%'>
 </div>
 
 ## Security and Access Restrictions
