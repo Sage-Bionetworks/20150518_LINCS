@@ -1,8 +1,8 @@
 ---
 title: "Synapse"
 subtitle: "MEP-LINCS, OHSU"
-author: "Kenneth Daily, Sage Bionetworks"
-date: "`r date()`"
+author: "Kenneth Daily, Sage Bionetworks (kenneth.daily@sagebase.org)"
+date: "2015-05-18"
 output: 
   ioslides_presentation:
     widescreen: true
@@ -13,8 +13,8 @@ output:
 library(knitr)
 library(dplyr)
 
-# library(synapseClient)
-# synapseLogin()
+library(synapseClient)
+synapseLogin()
 
 # control what is output when knitting
 # These can be overridden in specific chunks
@@ -62,18 +62,22 @@ Enabling researchers to contribute to large-scale collaborative science across i
 <img src='./img/synapseinteraction.png' width='60%'>
 </div>
 
-## Distributed, versioned file storage
+## Distributed, versioned file storage { .smaller }
 
 <div class="centered">
-<img src='./img/filessynapse.png' width='90%'>
+<img src='./img/filessynapse.png' width='85%'>
 </div>
+
+<br/>
+
+[http://dx.doi.org/10.7303/syn1773109](http://dx.doi.org/10.7303/syn1773109)
 
 <div class="notes">
 * Agnostic to storage solution (cloud, local server, remote server)
 * **New!** - your own Amazon S3 buckets
 </div>
 
-## Getting data onto Synapse { .smaller }
+## Getting data to Synapse { .smaller }
 
 Use the web interface:
 
@@ -121,7 +125,7 @@ Can work anyplace, store data just about anywhere!
 Obv we aren't opening up access to your personal laptop, but for personal things it can work fine
 </div>
 
-## User-defined annotations
+## Annotations & querying { .smaller }
 
 <div class="centered">
 <img src='./img/annotations.png' width='95%'>
@@ -133,33 +137,41 @@ Obv we aren't opening up access to your personal laptop, but for personal things
 * **Con**: Completely user-driven
 * Easily curate and search for specific files
 
-## Annotations & querying {.smaller}
+[syn3156503](https://www.synapse.org/#!Synapse:syn3156503/)
 
-```{r echo=TRUE, cache=TRUE, eval=FALSE}
+## Annotations & querying { .smaller }
+
+```{r echo=TRUE, cache=TRUE, eval=TRUE}
 q <- "select * from file where projectId=='syn2346643' and dataSubType=='cna'"
 res <- synapseQuery(q)
 ```
 
-```{r printtbl, eval=FALSE}
+```{r printtbl, eval=TRUE}
 colnames(res) <- gsub(".*\\.", "", colnames(res))
 res <- res[, c("name", "id", "dataType", "platform", "disease")]
 kable(res)
 ```
 
+<br/>
+
 [JWGray Breast Cancer Cell Line Panel (syn2346643)](https://www.synapse.org/#!Synapse:syn2346643/)
 
-## Synapse | Structured data tables
+## Structured data tables
 
 <div class="centered">
 <img src='./img/tableschema.png' width='90%'>
 </div>
+
+<br/>
+
+[syn3156503](https://www.synapse.org/#!Synapse:syn3156503/)
 
 <div class="notes">
 We may want to have data that is queryable, but also enforce what data is entered - certain strings, a column of integers, etc
 A relatively new feature in Synapse
 </div>
 
-## Synapse | Structured data tables { .smaller }
+## Structured data tables { .smaller }
 
 ```
 SELECT UID,biologicalSampleName,Diffname_short,pass_qc,Cell_Type,Cell_Line_Type,Tissue_of_Origin 
@@ -170,7 +182,11 @@ FROM syn3156503 WHERE public=true
 <img src='./img/tablequeryshort.png' width='90%'>
 </div>
 
-## Synapse | Structured data tables
+<br/>
+
+[See the query](https://www.synapse.org/#!Synapse:syn3156503/tables/query/eyJsaW1pdCI6MjUsICJzcWwiOiJTRUxFQ1QgVUlELGJpb2xvZ2ljYWxTYW1wbGVOYW1lLERpZmZuYW1lX3Nob3J0LHBhc3NfcWMsQ2VsbF9UeXBlLENlbGxfTGluZV9UeXBlLFRpc3N1ZV9vZl9PcmlnaW4gRlJPTSBzeW4zMTU2NTAzIFdIRVJFIHB1YmxpYz10cnVlIiwgImlzQ29uc2lzdGVudCI6dHJ1ZSwgIm9mZnNldCI6MH0=)
+
+## Structured data tables
 
 * Rows are versioned
 * Create/Update/Delete
@@ -185,7 +201,7 @@ Under the hood, we are always displaying the most recent version of each row
 But it's possible to get any previous versions if necessary
 </div>
 
-## Synapse | Documentation and description
+## Documentation and description
 
 <div class="centered">
 <img src='./img/wikiex.png' width='80%'>
@@ -195,17 +211,19 @@ But it's possible to get any previous versions if necessary
 Since the Synapse web site is probably most often used, we have flexible options for describing the data in a Project
 </div>
 
-## Synapse | Documentation and description
+## Documentation and description
 
 <div class="centered">
 <img src='./img/wiki2.png' width='80%'>
 </div>
 
-## Synapse | Advanced descriptions { .smaller }
+## Wikis from RMarkdown and IPython | [Sage-Bionetworks/knit2synapse](https://github.com/Sage-Bionetworks/knit2synapse) { .smaller }
 
-[syn2247883](https://www.synapse.org/#!Synapse:syn2247883/)
+<div class="centered">
+<img src='./img/advancedwiki.png' width='80%'>
+</div>
 
-## Synapse | Programmatic descriptions { .smaller }
+[syn2233188](https://www.synapse.org/#!Synapse:syn2233188/)
 
 ## Where a file comes from (provenance)
 
@@ -213,7 +231,7 @@ Since the Synapse web site is probably most often used, we have flexible options
 <img src='./img/provenance.png' height='80%'>
 </div>
 
-## Synapse | Security and Access Restrictions
+## Security and Access Restrictions
 
 * Users and groups
 * Fine-grained access controls at multiple levels
@@ -231,21 +249,24 @@ Since the Synapse web site is probably most often used, we have flexible options
 Sensitive data requires more control
 </div>
 
-## Automation | Uploading, Updating, Etc.
+## Automation | Uploading, Updating, etc.
 
 - New files in ExaCloud $\rightarrow$ Synapse
 - Annotation of files
 - Provenance
-- Previews of available files
+- Available file listings
+- Analysis code
 
 <div class="notes">
 Since Synapse is an API, this is easy - generally we provide customized solutions at different levels of automation
 The important thing is to agree on a standard
 </div>
 
-## MEP-LINCS Project | Before
+## Building external tools
 
-## MEP-LINCS Project | After
+<div class="centered">
+<img src='./img/pcbcdatadashboard.png' width='90%'>
+</div>
 
 ## Example projects | To draw inspiration
 
@@ -256,6 +277,16 @@ The important thing is to agree on a standard
 
 ## Extensive documentation and examples
 
+- [Synapse Tutorial](https://www.synapse.org/#!Help:GettingStarted)
+- [Support Forums](http://support.sagebase.org/sagebase)
+- [Interactive Guide (Mad Scientist Stu)](https://www.synapse.org/#!Help:Collaboratorium)
+- [R](http://r-docs.synapse.org/) [client](https://www.synapse.org/#!Help:RClient)
+- [Python](http://python-docs.synapse.org/) [client](https://www.synapse.org/#!Help:PythonClient)
+- [Command line](http://python-docs.synapse.org/CommandLineClient.html) [client](https://www.synapse.org/#!Help:CommandLineClient)
 - [github:Sage-Bionetworks/synapseTutorials](https://github.com/Sage-Bionetworks/synapseTutorials)
+- [kenneth.daily@sagebase.org](mailto:kenneth.daily@sagebase.org)
 
-## Thank you! | Sage Bionetworks
+## Thank you! | Questions?
+
+* [MEP-LINCS](http://www.lincsproject.org/centers/data-and-signature-generating-centers/oregon-u/) Group
+* [Sage Bionetworks](http://sagebase.org/)
