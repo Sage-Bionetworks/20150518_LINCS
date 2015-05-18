@@ -309,6 +309,10 @@ https://www.synapse.org/#!Synapse:syn3157640/wiki/
 - [JWGray Breast Cancer Cell Line Panel](https://www.synapse.org/#!Synapse:syn2346643)
 - [NCI Up For A Challenge](https://www.synapse.org/#!Synapse:syn3157598)
 
+<br/>
+
+For more, see [Research Communities](https://www.synapse.org/#!Synapse:syn3722562/wiki/219258) and [Open Resources](https://www.synapse.org/#!Synapse:syn3722562/wiki/219259).
+
 ## Extensive documentation and examples
 
 - [Synapse Tutorial](https://www.synapse.org/#!Help:GettingStarted)
