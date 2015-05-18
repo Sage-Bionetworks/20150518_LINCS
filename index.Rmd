@@ -29,12 +29,14 @@ knitr::opts_chunk$set(
 ```{r include=TRUE, eval=FALSE}
 library(rGithubClient)
 library(knit2synapse)
+library(synapseClient)
+synapseLogin()
 
 myFileName <- "index.Rmd"
+# thisScript <- getPermlink(getRepo("Sage-Bionetworks/20150518_LINCS"), 
+#                           myFileName)
 
-thisScript <- getPermlink(getRepo("Sage-Bionetworks/20150518_LINCS"), 
-                          myFileName)
-
+thisScript <- "https://sage-bionetworks.github.io/20150518_LINCS/index.html"
 thisFile <- File(thisScript, name=myFileName, parentId="syn4212390", synapseStore=FALSE)
 thisFile <- synStore(thisFile)
 
@@ -44,6 +46,10 @@ knitfile2synapse(file = myFileName,
                  overwrite=T)
 
 ```
+
+## Slides
+
+Available on [Synapse](https://www.synapse.org/#!Synapse:syn4212404/)
 
 ## Issues in large data-intensive projects | People working in parallel across the globe { .smaller }
 
@@ -281,11 +287,20 @@ Since Synapse is an API, this is easy - generally we provide customized solution
 The important thing is to agree on a standard
 </div>
 
-## Building external tools
+## Building external tools | LI4V002C2 Spot MEMA Dataset Explorer (Mark Dane) { .smaller }
+
+<div class="centered">
+<img src='./img/memaexplorer.png' width='90%'>
+</div>
+
+https://www.synapse.org/#!Synapse:syn3157640/wiki/
+
+## Building external tools | PCBC Heatmap Explorer
 
 <div class="centered">
 <img src='./img/pcbcdatadashboard.png' width='90%'>
 </div>
+
 
 ## Example projects | To draw inspiration
 
