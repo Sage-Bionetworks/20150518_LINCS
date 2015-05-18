@@ -49,7 +49,7 @@ knitfile2synapse(file = myFileName,
 
 ## Slides
 
-Available on [Synapse](https://www.synapse.org/#!Synapse:syn4212404/)
+Available on [MEP-LINCS project in Synapse (syn4212404)](https://www.synapse.org/#!Synapse:syn4212404/)
 
 ## Issues in large data-intensive projects | People working in parallel across the globe { .smaller }
 
