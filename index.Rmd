@@ -26,6 +26,25 @@ knitr::opts_chunk$set(
   tidy = FALSE)
 ```
 
+```{r include=TRUE, eval=FALSE}
+library(rGithubClient)
+library(knit2synapse)
+
+myFileName <- "index.Rmd"
+
+thisScript <- getPermlink(getRepo("Sage-Bionetworks/20150518_LINCS"), 
+                          myFileName)
+
+thisFile <- File(thisScript, name=myFileName, parentId="syn4212390", synapseStore=FALSE)
+thisFile <- synStore(thisFile)
+
+knitfile2synapse(file = myFileName,
+                 owner = thisFile@properties$id, 
+                 wikiName = "Presentation at OHSU for MEP-LINCS.",
+                 overwrite=T)
+
+```
+
 ## Issues in large data-intensive projects | People working in parallel across the globe { .smaller }
 
 <div class="centered">
