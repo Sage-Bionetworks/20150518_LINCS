@@ -95,7 +95,7 @@ Enabling researchers to contribute to large-scale collaborative science across i
 
 <br/>
 
-[http://dx.doi.org/10.7303/syn1773109](http://dx.doi.org/10.7303/syn1773109)
+[https://doi.org/10.7303/syn1773109](https://doi.org/10.7303/syn1773109)
 
 <div class="notes">
 * Agnostic to storage solution (cloud, local server, remote server)
